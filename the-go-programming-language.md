@@ -45,4 +45,14 @@ fmt.Fprintf(os.Stderr, "dup2: %v\n",err)
 - `start:=time.Now()` & `time.Since(start).Seconds())` tính thời gian kể từ `start`.
 - `nbytes, err := io.Copy(ioutil.Discard, resp.Body)` discard data và trả về số bytes.
 
+### 1.7 A Web Server
+
+- `http.HandleFunc(urlPattern, handler` và `func handler(w http.ResponseWriter, r *http.Request) {
+        fmt.Fprintf(w, "URL.Path = %q", r.URL.Path)
+}` để xử lý http requests 
+- `log.Fatal(http.ListenAndServe("127.0.0.1:8000", nil))` vai trò web server.
+- `var mu sync.Muxex`, `mu.Lock()` và `mu.Unlock` dùng khi muốn giới hạn 1 go routine duy nhất được phép truy cập vùng nhớ tại một thời điểm.
+-  `r.Method`, `r.URL`, `r.Proto`,... 
+- `k, v := range r.Header`, `k, v = `, `err := r.ParseForm()`, `k,v := range r.Form`...
+ 
 
