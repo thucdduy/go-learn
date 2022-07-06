@@ -52,7 +52,6 @@ var c, python, java pool
 - Basic types
 
 ```go
-
 bool
 
 string
@@ -68,12 +67,8 @@ rune // alias for int32
 float32 float64
 
 complex64 complex128
-
-
-
 ```
 
 
 
-# Goroutines, Phân tích UI để tạo DB
 
