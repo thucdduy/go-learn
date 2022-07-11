@@ -207,17 +207,173 @@ func pow(x, n, lim float64) float64 {
 	fmt.Println("Done")
 ```
 
+- Pointers
 
+```go
+	i, j := 42, 207
+	p := &i         // point to i
+	fmt.Println(*p) // read i through the pointer
+	*p = 21         // set i through the pointer
+	fmt.Println(i)  // see the new value of i
 
+	p = &j         // point to j
+	*p = *p / 37   // devide j through the pointer
+	fmt.Println(j) // see the new value of j
+```
 
+- Structs
 
+```go
+type Vertex struct {
+	X, Y int
+}
 
+func main() {
+	fmt.Println(Vertex{1, 2})
+}
+```
 
+- Pointers to structs
 
+```go
+type Vertex struct {
+	X, Y int
+}
 
+func main() {
+	v := Vertex{1, 2}
+	p := &v
+	p.X = 1e9
+	fmt.Println(v)
+}
+```
 
+- Struct Literals
 
+```go
+type Vertex struct {
+	X, Y int
+}
 
+var (
+	v1 = Vertex{1, 2}
+	v2 = Vertex{Y: 2}
+	v3 = Vertex{}
+	p  = &Vertex{3, 4}
+)
+```
 
+- Arrays
 
+```go
+	var a [2]string
+	a[0] = "Hello"
+	a[1] = "world"
+	fmt.Println(a)
 
+	primes := [6]int{2, 3, 5, 7, 11, 13}
+	fmt.Println(primes)	
+```
+
+- Slices
+
+```go
+	primes := [6]int{2, 3, 5, 7, 11, 13}
+	fmt.Println(primes)
+
+	s := primes[1:3]
+	fmt.Println(s)
+```
+
+- Slices are like references to arrays
+
+```go
+	a := [4]string{"AAA", "BBB", "CCC", "DDD"}
+	b := a[0:2]
+	c := a[1:3]
+	fmt.Println(a, b, c)
+
+	b[0] = "XXX"
+	fmt.Println(a, b, c)
+```
+
+- Slice literals
+
+```go
+	a := []int{1, 2, 3, 4, 5}
+	fmt.Println(a)
+
+	b := []bool{true, false, true, false}
+	fmt.Println(b)
+
+	c := []struct {
+		x int
+		y bool
+	}{
+		{1, true},
+		{2, false},
+		{3, true},
+	}
+	fmt.Println(c)
+```
+
+- Slice length and capacity
+
+```go
+func printSlice(s []int) {
+	fmt.Printf("len=%d cap=%d %v\n", len(s), cap(s), s)
+}
+
+func main() {
+	s := []int{0, 2, 3, 4, 5}
+	printSlice(s)
+
+	// slice the slice to give it zero length.
+	s = s[:0]
+	printSlice(s)
+
+	// Extend its length.
+	s = s[:4]
+	printSlice(s)
+
+	// Drop it first two values.
+	s = s[2:]
+	printSlice(s)
+}
+```
+
+- `nil` Slice
+
+```go
+	if s := []int; s == nil {
+		fmt.Printf("Nil. len=%d cap=%d %v\n", len(s), cap(s), s)
+	}
+```
+
+- Create a slice with `make`
+
+```go
+func printSlice(s string, x []int) {
+	fmt.Printf("%s len=%d cap=%d %v\n", s, len(x), cap(x), x)
+}
+func main() {
+
+	a := make([]int, 6)
+	printSlice("a", a)
+
+	b := make([]int, 0, 5)
+	printSlice("b", b)
+
+	c := b[0:2]
+	printSlice("c", c)
+
+	d := c[2:5]
+	printSlice("d", d)
+}
+```
+
+- `slice` of slice
+
+```go
+
+```
