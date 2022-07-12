@@ -375,5 +375,59 @@ func main() {
 - `slice` of slice
 
 ```go
+	board := [][]string{
+		{"_", "_", "_", "_"},
+		{"_", "_", "_", "_"},
+		{"_", "_", "_", "_"},
+		{"_", "_", "_", "_"},
+	}
 
+	board[0][1] = "X"
+	board[1][2] = "O"
+	board[3][3] = "X"
+	board[2][1] = "O"
+
+	for i := 0; i < len(board); i++ {
+		fmt.Printf("%s\n", strings.Join(board[i], " "))
+	}
 ```
+
+- `append`ing to a slice
+
+```go
+	var s []int
+	s = append(s, 0)
+	s = append(s, 1, 2, 3, 4)
+```
+
+- `range`
+
+```go
+	pow := []int{1, 2, 4, 8, 16, 32, 64, 128}
+	for i, v := range pow {
+		fmt.Printf("2**%d = %d\n", i, v)
+	}
+```
+
+- `map`
+
+```go
+	m = make(map[string]Vertex)
+	m["Bell Labs"] = Vertex{1000.0, 2000.0}
+	fmt.Println(m["Bell Labs"])
+
+	m1 := map[string]Vertex{
+		"Vietnix": {1.1, 2.2},
+		"Google":  {3.3, 4.4},
+	}
+	fmt.Println(m1)
+
+	delete(m1, "Google")
+	fmt.Println(m1)
+
+	v, ok := m1["Vietnix"]
+	fmt.Println("The Value:", v, ". Present?", ok)
+```
+
+- Function values
+
